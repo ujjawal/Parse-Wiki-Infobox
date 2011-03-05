@@ -16,7 +16,12 @@ function foo()
         key = i
         content = result.query.pages[key].revisions[0]['*'];
         v = content.match(/{{[^]*?({{[^{}]*?}}[^]*?)*}}/g);
-        foo = v[0].match(/\[\[([^\]]*)\]\]/g);
+        for(i=0; i< v.length; i++) { 
+            if(v[i].match(/infobox/i)) { 
+                foo = v[i].match(/\[\[([^\]]*)\]\]/g);
+                break;
+            }
+        }
         arr = [];
         for(i=0;i<foo.length;i++) { 
             arr.push(foo[i].match(/[A-Za-z].*[^\]]/)[0]);
